@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Theme Variables (Light mode by default) */
+:root {
+  --bg-color: #FAFAFD;
+  --text-color: #1D1D1F;
+  --text-muted: #6E6E73;
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-hover-bg: rgba(0, 0, 0, 0.04);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --input-bg: rgba(0, 0, 0, 0.01);
+  --input-border: rgba(0, 0, 0, 0.12);
+  --grid-color: rgba(124, 58, 237, 0.03);
+  --glow-opacity: 0.04;
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+  color-scheme: light;
+}
+
+/* Dark Mode Overrides */
+.dark {
+  --bg-color: #050816;
+  --text-color: #FFFFFF;
+  --text-muted: #9E9E9E;
+  --card-bg: rgba(255, 255, 255, 0.03);
+  --card-hover-bg: rgba(255, 255, 255, 0.06);
+  --card-border: rgba(255, 255, 255, 0.05);
+  --input-bg: rgba(255, 255, 255, 0.02);
+  --input-border: rgba(255, 255, 255, 0.08);
+  --grid-color: rgba(124, 58, 237, 0.05);
+  --glow-opacity: 0.15;
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Outfit', 'Inter', sans-serif;
+  overflow-x: hidden;
+  user-select: none;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: #7C3AED;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00E5FF;
+}
+
+/* Dynamic background grid overlay */
+.bg-grid-glow {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  position: relative;
+}
+
+.bg-grid-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle 800px at 50% 200px, rgba(0, 229, 255, var(--glow-opacity)), transparent 80%);
+  pointer-events: none;
+}
+
+/* Adaptive Glassmorphism cards */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-card:hover {
+  background: var(--card-hover-bg);
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 10px 40px 0 rgba(0, 229, 255, 0.12);
+}
+
+/* Adaptive Inputs */
+.glass-input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  color: var(--text-color);
+  padding: 10px 14px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  border-color: #00E5FF;
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+  background: var(--card-hover-bg);
+}
+
+/* Adaptive Text overrides */
+.text-muted-adaptive {
+  color: var(--text-muted);
+}
+
+.border-adaptive {
+  border-color: var(--card-border);
+}
+
+/* Glow Texts */
+.text-glow-primary {
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
+}
+
+.text-glow-accent {
+  text-shadow: 0 0 10px rgba(0, 255, 163, 0.5);
+}
+
+/* Shimmer Loading animation */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Custom interactive background animations */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.1);
+  }
+}
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+  pointer-events: none;
+  animation: pulse-slow 8s infinite ease-in-out;
+}

@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+venv/
+.env
+.DS_Store
+
+# Build outputs
+client/dist/
+client/node_modules/
+server/node_modules/
+
+# Python cache and models
+__pycache__/
+*.pyc
+ml_service/__pycache__/
+ml_service/models/*.pkl
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

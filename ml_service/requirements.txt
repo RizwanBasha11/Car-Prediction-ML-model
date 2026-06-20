@@ -1,0 +1,9 @@
+flask
+flask-cors
+xgboost
+catboost
+lightgbm
+scikit-learn
+pandas
+numpy
+pillow
